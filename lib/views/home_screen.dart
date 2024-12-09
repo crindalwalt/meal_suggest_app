@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:meal_suggest/models/meal.dart';
+import 'package:meal_suggest/providers/meal_provider.dart';
 import 'package:meal_suggest/views/add_meal_screen.dart';
 import 'package:meal_suggest/views/meal_detail_screen.dart';
 import 'package:meal_suggest/views/search_meal_screen.dart';
 import 'package:meal_suggest/views/utils/bottom_navbar.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final mealsProvider = Provider.of<MealProvider>(context);
+    final List<Meal> totalMeals = mealsProvider.meals;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -86,9 +91,11 @@ class HomeScreen extends StatelessWidget {
                   mainAxisSpacing: 10,
                   childAspectRatio: 3 / 4,
                 ),
-                itemCount: 8, // Replace with the length of your meal list
+                itemCount: totalMeals
+                    .length, // Replace with the length of your meal list
                 itemBuilder: (context, index) {
-                  return _buildMealCard(context);
+                  Meal mealItem = totalMeals[index];
+                  return _buildMealCard(context, mealItem);
                 },
               ),
             ),
@@ -120,7 +127,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMealCard(context) {
+  Widget _buildMealCard(context, Meal meal) {
     return InkWell(
       onTap: () {
         Navigator.of(context)
@@ -136,14 +143,14 @@ class HomeScreen extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.network(
                 'https://picsum.photos/100/120', // Replace with actual meal image URL
-                height: 120,
+                height: 80,
                 fit: BoxFit.cover,
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Meal Name",
+                "${meal.title}",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -154,7 +161,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
-                "Short description of the meal.",
+                "${meal.excerpt}",
                 style: TextStyle(color: Colors.grey, fontSize: 12),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
