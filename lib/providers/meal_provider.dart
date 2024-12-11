@@ -6,7 +6,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm1',
       title: 'Spaghetti Carbonara',
-      imageUrl: 'https://example.com/images/spaghetti_carbonara.jpg',
+      imageUrl: 'https://images.pexels.com/photos/12918198/pexels-photo-12918198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'A classic Italian pasta dish.',
       approxTime: 30.0,
       difficultyLevel: 'Medium',
@@ -29,7 +29,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm2',
       title: 'Chicken Curry',
-      imageUrl: 'https://example.com/images/chicken_curry.jpg',
+      imageUrl: 'https://images.pexels.com/photos/29685076/pexels-photo-29685076/free-photo-of-spicy-indian-chicken-curry-in-brass-pan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'A flavorful Indian-inspired curry.',
       approxTime: 40.0,
       difficultyLevel: 'Medium',
@@ -46,7 +46,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm3',
       title: 'Vegetable Stir-Fry',
-      imageUrl: 'https://example.com/images/vegetable_stir_fry.jpg',
+      imageUrl: 'https://images.pexels.com/photos/15322739/pexels-photo-15322739/free-photo-of-frying-vegetables-on-pan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'Quick and healthy veggie dish.',
       approxTime: 20.0,
       difficultyLevel: 'Easy',
@@ -69,7 +69,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm4',
       title: 'Beef Stroganoff',
-      imageUrl: 'https://example.com/images/beef_stroganoff.jpg',
+      imageUrl: 'https://images.pexels.com/photos/28503619/pexels-photo-28503619/free-photo-of-delicious-beef-stroganoff-with-vegetables.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'Rich and creamy beef dish.',
       approxTime: 45.0,
       difficultyLevel: 'Hard',
@@ -86,7 +86,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm5',
       title: 'Grilled Salmon',
-      imageUrl: 'https://example.com/images/grilled_salmon.jpg',
+      imageUrl: 'https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'A healthy and delicious salmon recipe.',
       approxTime: 25.0,
       difficultyLevel: 'Easy',
@@ -109,7 +109,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm6',
       title: 'Margherita Pizza',
-      imageUrl: 'https://example.com/images/margherita_pizza.jpg',
+      imageUrl: 'https://images.pexels.com/photos/19602378/pexels-photo-19602378/free-photo-of-hands-holding-pizzas.jpeg?auto=compress&cs=tinysrgb&w=400',
       excerpt: 'Classic Italian pizza with fresh ingredients.',
       approxTime: 35.0,
       difficultyLevel: 'Medium',
@@ -132,7 +132,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm7',
       title: 'Chicken Caesar Salad',
-      imageUrl: 'https://example.com/images/chicken_caesar_salad.jpg',
+      imageUrl: 'https://images.pexels.com/photos/5639371/pexels-photo-5639371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'A classic salad with grilled chicken.',
       approxTime: 20.0,
       difficultyLevel: 'Easy',
@@ -155,7 +155,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm8',
       title: 'Vegetarian Tacos',
-      imageUrl: 'https://example.com/images/vegetarian_tacos.jpg',
+      imageUrl: 'https://images.pexels.com/photos/5639371/pexels-photo-5639371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'Tacos filled with fresh veggies and beans.',
       approxTime: 15.0,
       difficultyLevel: 'Easy',
@@ -179,7 +179,7 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm9',
       title: 'Pancakes',
-      imageUrl: 'https://example.com/images/pancakes.jpg',
+      imageUrl: 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'Fluffy pancakes perfect for breakfast.',
       approxTime: 20.0,
       difficultyLevel: 'Easy',

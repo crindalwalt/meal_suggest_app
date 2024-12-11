@@ -10,33 +10,21 @@ import 'package:provider/provider.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
     final mealsProvider = Provider.of<MealProvider>(context);
     final List<Meal> totalMeals = mealsProvider.meals;
     return Scaffold(
+      key: _key,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              _key.currentState?.openDrawer();
+            },
+            icon: Icon(Icons.menu)),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Row(
-          children: [
-            Image.network(
-              'https://picsum.photos/100/100',
-              height: 40,
-            ),
-            Spacer(),
-            IconButton(
-              icon: Icon(Icons.favorite_border, color: Colors.redAccent),
-              onPressed: () {
-                // Handle heart icon press
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => AddMealScreen(),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
+        title: Text("Meal Suggest"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -91,8 +79,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisSpacing: 10,
                   childAspectRatio: 3 / 4,
                 ),
-                itemCount: totalMeals
-                    .length, // Replace with the length of your meal list
+                itemCount: totalMeals.length,
                 itemBuilder: (context, index) {
                   Meal mealItem = totalMeals[index];
                   return _buildMealCard(context, mealItem);
@@ -104,6 +91,16 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: Colors.grey[200], // Subtle background color
       bottomNavigationBar: BottomNavbar(),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.white,
+          child: IconButton(
+              onPressed: () {
+                _key.currentState?.closeDrawer();
+              },
+              icon: Icon(Icons.delete)),
+        ),
+      ),
     );
   }
 
@@ -130,8 +127,10 @@ class HomeScreen extends StatelessWidget {
   Widget _buildMealCard(context, Meal meal) {
     return InkWell(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => MealDetailScreen()));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => MealDetailScreen(
+                  meal: meal,
+                )));
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -142,7 +141,7 @@ class HomeScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.network(
-                'https://picsum.photos/100/120', // Replace with actual meal image URL
+                '${meal.imageUrl}', // Replace with actual meal image URL
                 height: 80,
                 fit: BoxFit.cover,
               ),

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:meal_suggest/models/meal.dart';
 import 'package:meal_suggest/views/saved_meal_screen.dart';
 import 'package:meal_suggest/views/utils/bottom_navbar.dart';
 
 class MealDetailScreen extends StatelessWidget {
+  final Meal meal;
+  int count = 0;
+
+  MealDetailScreen({super.key, required this.meal});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +25,7 @@ class MealDetailScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
-                          'https://picsum.photos/200/100', // Replace with your image URL
+                          '${meal.imageUrl}', // Replace with your image URL
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -43,7 +48,7 @@ class MealDetailScreen extends StatelessWidget {
                   left: 16,
                   right: 16,
                   child: Text(
-                    "Delicious Meal Name", // Replace with dynamic data
+                    "${meal.title}", // Replace with dynamic data
                     style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
@@ -68,9 +73,11 @@ class MealDetailScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildMealInfoTile(Icons.timer, "45 min"),
-                  _buildMealInfoTile(Icons.leaderboard, "Easy"),
-                  _buildMealInfoTile(Icons.people, "2 Servings"),
+                  _buildMealInfoTile(Icons.timer, "${meal.approxTime} mins"),
+                  _buildMealInfoTile(
+                      Icons.leaderboard, "${meal.difficultyLevel}"),
+                  _buildMealInfoTile(
+                      Icons.people, "${meal.servingSize} Servings"),
                 ],
               ),
             ),
@@ -85,20 +92,7 @@ class MealDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildIngredientItem("1 cup of rice"),
-                  _buildIngredientItem("2 tbsp of olive oil"),
-                  _buildIngredientItem("200g chicken breast"),
-                  _buildIngredientItem("1 tsp of salt"),
-                  _buildIngredientItem("1/2 tsp of pepper"),
-                  _buildIngredientItem("1 cup of vegetables"),
-                ],
-              ),
-            ),
+            _buildIngredients(meal),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -115,16 +109,10 @@ class MealDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildStepItem(1, "Rinse the rice thoroughly and set aside."),
-                  _buildStepItem(
-                      2, "Heat olive oil in a pan and sauté the chicken."),
-                  _buildStepItem(
-                      3, "Add vegetables and stir-fry for 5 minutes."),
-                  _buildStepItem(4, "Mix the rice, chicken, and vegetables."),
-                  _buildStepItem(5, "Add salt and pepper to taste."),
-                  _buildStepItem(6, "Cook for 20 minutes and serve hot."),
-                ],
+                children: meal.steps.map((step) {
+                  count++;
+                  return _buildStepItem(count, step);
+                }).toList(),
               ),
             ),
             const SizedBox(height: 30),
@@ -173,6 +161,18 @@ class MealDetailScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildIngredients(Meal mealItem) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: mealItem.ingredients.map((e) {
+          return _buildIngredientItem(e);
+        }).toList(),
+      ),
     );
   }
 
