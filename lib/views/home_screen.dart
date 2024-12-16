@@ -17,76 +17,84 @@ class HomeScreen extends StatelessWidget {
       key: _key,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+
         leading: IconButton(
             onPressed: () {
               _key.currentState?.openDrawer();
             },
             icon: Icon(Icons.menu)),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text("Meal Suggest"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            const SizedBox(height: 80), // Space below the transparent AppBar
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: "Search meals...",
-                prefixIcon: Icon(Icons.search, color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: BorderSide.none,
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              "Categories",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 50,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  _buildCategoryChip(context, "Breakfast"),
-                  _buildCategoryChip(context, "Lunch"),
-                  _buildCategoryChip(context, "Dinner"),
-                  _buildCategoryChip(context, "Snacks"),
-                  _buildCategoryChip(context, "Desserts"),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 3 / 4,
+                const SizedBox(height: 80), // Space below the transparent AppBar
+                TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white70,
+                    hintText: "Search meals...",
+                    prefixIcon: Icon(Icons.search, color: Colors.grey),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
                 ),
-                itemCount: totalMeals.length,
-                itemBuilder: (context, index) {
-                  Meal mealItem = totalMeals[index];
-                  return _buildMealCard(context, mealItem);
-                },
-              ),
+                const SizedBox(height: 20),
+                Text(
+                  "Categories",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 50,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _buildCategoryChip(context, "Breakfast"),
+                      _buildCategoryChip(context, "Lunch"),
+                      _buildCategoryChip(context, "Dinner"),
+                      _buildCategoryChip(context, "Snacks"),
+                      _buildCategoryChip(context, "Desserts"),
+                    ],
+                  ),
+                ),
+                // const SizedBox(height: 10),
+                GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 8 / 9,
+                  ),
+                  itemCount: totalMeals.length,
+                  itemBuilder: (context, index) {
+                    Meal mealItem = totalMeals[index];
+                    return _buildMealCard(context, mealItem);
+                  },
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
       backgroundColor: Colors.grey[200], // Subtle background color
@@ -133,17 +141,21 @@ class HomeScreen extends StatelessWidget {
                 )));
       },
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        elevation: 4,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        elevation: 0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-              child: Image.network(
-                '${meal.imageUrl}', // Replace with actual meal image URL
-                height: 80,
-                fit: BoxFit.cover,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+              child: AspectRatio(
+                aspectRatio: 3/2,
+                child: Image.network(
+                  '${meal.imageUrl}', // Replace with actual meal image URL
+                  // height: 80,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Padding(
