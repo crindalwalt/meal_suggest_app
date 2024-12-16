@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal_suggest/providers/category_provider.dart';
 import 'package:meal_suggest/providers/meal_provider.dart';
 import 'package:meal_suggest/views/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => MealProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CategoryProvider(),
         ),
       ],
       child: MaterialApp(

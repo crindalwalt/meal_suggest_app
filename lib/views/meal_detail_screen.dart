@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meal_suggest/models/meal.dart';
 import 'package:meal_suggest/views/saved_meal_screen.dart';
 import 'package:meal_suggest/views/utils/bottom_navbar.dart';
+import 'package:timelines/timelines.dart';
 
 class MealDetailScreen extends StatelessWidget {
   final Meal meal;
@@ -67,9 +68,10 @@ class MealDetailScreen extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(12),
-              // decoration: BoxDecoration(
-              //     color: Colors.grey, borderRadius: BorderRadius.circular(15)),
-              padding: const EdgeInsets.all(16.0),
+
+              decoration: BoxDecoration(
+                   borderRadius: BorderRadius.circular(15)),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -112,9 +114,11 @@ class MealDetailScreen extends StatelessWidget {
                 children: meal.steps.map((step) {
                   count++;
                   return _buildStepItem(count, step);
+                  // return _buildStepTimeLine(1,"dome");
                 }).toList(),
               ),
             ),
+            // _buildStepTimeLine(1, "something"),
             const SizedBox(height: 30),
             Center(
               child: ElevatedButton(
@@ -148,19 +152,26 @@ class MealDetailScreen extends StatelessWidget {
   }
 
   Widget _buildMealInfoTile(IconData icon, String label) {
-    return Column(
-      children: [
-        Icon(icon, color: Colors.orangeAccent),
-        const SizedBox(height: 5),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: Colors.black54,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.orange[100],
+      ),
+      padding: EdgeInsets.all(25),
+      child: Column(
+        children: [
+          Icon(icon, color: Colors.orangeAccent),
+          const SizedBox(height: 5),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black54,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -194,6 +205,18 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildStepTimeLine(int stepNumber, String description) {
+    return Timeline.tileBuilder(
+      builder: TimelineTileBuilder.fromStyle(
+        contentsAlign: ContentsAlign.alternating,
+        contentsBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Text('Timeline Event $index'),
+        ),
+        itemCount: 10,
+      ),
+    );
+  }
   Widget _buildStepItem(int stepNumber, String description) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
