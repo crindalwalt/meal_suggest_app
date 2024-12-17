@@ -6,7 +6,9 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm1',
       title: 'Spaghetti Carbonara',
-      imageUrl: 'https://images.pexels.com/photos/12918198/pexels-photo-12918198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      isSaved: false,
+      imageUrl:
+          'https://images.pexels.com/photos/12918198/pexels-photo-12918198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'A classic Italian pasta dish.',
       approxTime: 30.0,
       difficultyLevel: 'Medium',
@@ -28,8 +30,10 @@ class MealProvider extends ChangeNotifier {
     ),
     Meal(
       id: 'm2',
+      isSaved: false,
       title: 'Chicken Curry',
-      imageUrl: 'https://images.pexels.com/photos/29685076/pexels-photo-29685076/free-photo-of-spicy-indian-chicken-curry-in-brass-pan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      imageUrl:
+          'https://images.pexels.com/photos/29685076/pexels-photo-29685076/free-photo-of-spicy-indian-chicken-curry-in-brass-pan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'A flavorful Indian-inspired curry.',
       approxTime: 40.0,
       difficultyLevel: 'Medium',
@@ -45,8 +49,10 @@ class MealProvider extends ChangeNotifier {
     ),
     Meal(
       id: 'm3',
+      isSaved: false,
       title: 'Vegetable Stir-Fry',
-      imageUrl: 'https://images.pexels.com/photos/15322739/pexels-photo-15322739/free-photo-of-frying-vegetables-on-pan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      imageUrl:
+          'https://images.pexels.com/photos/15322739/pexels-photo-15322739/free-photo-of-frying-vegetables-on-pan.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'Quick and healthy veggie dish.',
       approxTime: 20.0,
       difficultyLevel: 'Easy',
@@ -69,7 +75,9 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm4',
       title: 'Beef Stroganoff',
-      imageUrl: 'https://images.pexels.com/photos/28503619/pexels-photo-28503619/free-photo-of-delicious-beef-stroganoff-with-vegetables.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      isSaved: false,
+      imageUrl:
+          'https://images.pexels.com/photos/28503619/pexels-photo-28503619/free-photo-of-delicious-beef-stroganoff-with-vegetables.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'Rich and creamy beef dish.',
       approxTime: 45.0,
       difficultyLevel: 'Hard',
@@ -86,7 +94,9 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm5',
       title: 'Grilled Salmon',
-      imageUrl: 'https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      isSaved: true,
+      imageUrl:
+          'https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'A healthy and delicious salmon recipe.',
       approxTime: 25.0,
       difficultyLevel: 'Easy',
@@ -109,7 +119,9 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm6',
       title: 'Margherita Pizza',
-      imageUrl: 'https://images.pexels.com/photos/19602378/pexels-photo-19602378/free-photo-of-hands-holding-pizzas.jpeg?auto=compress&cs=tinysrgb&w=400',
+      isSaved: false,
+      imageUrl:
+          'https://images.pexels.com/photos/19602378/pexels-photo-19602378/free-photo-of-hands-holding-pizzas.jpeg?auto=compress&cs=tinysrgb&w=400',
       excerpt: 'Classic Italian pizza with fresh ingredients.',
       approxTime: 35.0,
       difficultyLevel: 'Medium',
@@ -132,7 +144,9 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm7',
       title: 'Chicken Caesar Salad',
-      imageUrl: 'https://images.pexels.com/photos/5639371/pexels-photo-5639371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      isSaved: true,
+      imageUrl:
+          'https://images.pexels.com/photos/5639371/pexels-photo-5639371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'A classic salad with grilled chicken.',
       approxTime: 20.0,
       difficultyLevel: 'Easy',
@@ -155,7 +169,9 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm8',
       title: 'Vegetarian Tacos',
-      imageUrl: 'https://images.pexels.com/photos/5639371/pexels-photo-5639371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      isSaved: false,
+      imageUrl:
+          'https://images.pexels.com/photos/5639371/pexels-photo-5639371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'Tacos filled with fresh veggies and beans.',
       approxTime: 15.0,
       difficultyLevel: 'Easy',
@@ -179,7 +195,9 @@ class MealProvider extends ChangeNotifier {
     Meal(
       id: 'm9',
       title: 'Pancakes',
-      imageUrl: 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      isSaved: false,
+      imageUrl:
+          'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       excerpt: 'Fluffy pancakes perfect for breakfast.',
       approxTime: 20.0,
       difficultyLevel: 'Easy',
@@ -204,4 +222,13 @@ class MealProvider extends ChangeNotifier {
     // Add more meals here
   ];
   List<Meal> get meals => _meals;
+
+  List<Meal> get savedMeal => _meals.where((meal) => meal.isSaved).toList();
+
+  void toggleSavedStatus(String id) {
+    final mealIndex = _meals.indexWhere((meal) => meal.id == id);
+    Meal meal = _meals[mealIndex];
+    meal.isSaved = !meal.isSaved;
+    notifyListeners();
+  }
 }

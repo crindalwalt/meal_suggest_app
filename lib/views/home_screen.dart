@@ -6,6 +6,7 @@ import 'package:meal_suggest/providers/category_provider.dart';
 import 'package:meal_suggest/providers/meal_provider.dart';
 import 'package:meal_suggest/views/add_meal_screen.dart';
 import 'package:meal_suggest/views/meal_detail_screen.dart';
+import 'package:meal_suggest/views/saved_meal_screen.dart';
 import 'package:meal_suggest/views/search_meal_screen.dart';
 import 'package:meal_suggest/views/utils/bottom_navbar.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,20 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text("Meal Suggest"),
+        actions: [
+          Padding(
+              padding: EdgeInsets.all(12),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => SavedMealScreen(),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.favorite),
+              )),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -105,9 +120,10 @@ class HomeScreen extends StatelessWidget {
                             width: double.infinity,
                             height: double.infinity,
                             child: Column(
-
                               children: [
-                                const SizedBox(height: 20,),
+                                const SizedBox(
+                                  height: 20,
+                                ),
                                 Container(
                                   width: 40,
                                   height: 40,

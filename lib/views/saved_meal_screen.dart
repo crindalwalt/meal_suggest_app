@@ -1,27 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:meal_suggest/models/meal.dart';
+import 'package:meal_suggest/providers/meal_provider.dart';
 import 'package:meal_suggest/views/utils/bottom_navbar.dart';
+import 'package:provider/provider.dart';
 
-class SavedMealScreen extends StatelessWidget {
+class SavedMealScreen extends StatefulWidget {
+  @override
+  State<SavedMealScreen> createState() => _SavedMealScreenState();
+}
+
+class _SavedMealScreenState extends State<SavedMealScreen> {
   @override
   Widget build(BuildContext context) {
-    final savedMeals = [
-      {
-        'image': 'https://picsum.photos/200/100',
-        'title': 'Grilled Chicken Salad',
-        'description': 'A healthy mix of grilled chicken and fresh greens.',
-      },
-      {
-        'image': 'https://picsum.photos/200/100',
-        'title': 'Spaghetti Carbonara',
-        'description': 'Classic Italian pasta with creamy sauce.',
-      },
-      {
-        'image': 'https://picsum.photos/200/100',
-        'title': 'Vegetable Stir-fry',
-        'description': 'A quick and delicious vegetable stir-fry.',
-      },
-    ];
-
+    final mealProvider = Provider.of<MealProvider>(context);
+    final savedMeal = mealProvider.savedMeal;
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -42,7 +34,7 @@ class SavedMealScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${savedMeals.length} Meals Saved",
+                "${savedMeal.length} Meals Saved",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -52,9 +44,9 @@ class SavedMealScreen extends StatelessWidget {
               const SizedBox(height: 16),
               Expanded(
                 child: ListView.builder(
-                  itemCount: savedMeals.length,
+                  itemCount: savedMeal.length,
                   itemBuilder: (context, index) {
-                    final meal = savedMeals[index];
+                    final meal = savedMeal[index];
                     return _buildMealCard(context, meal);
                   },
                 ),
@@ -65,7 +57,9 @@ class SavedMealScreen extends StatelessWidget {
         bottomNavigationBar: BottomNavbar());
   }
 
-  Widget _buildMealCard(BuildContext context, Map<String, String> meal) {
+  Widget _buildMealCard(BuildContext context, Meal meal) {
+    final mealProvider = Provider.of<MealProvider>(context);
+
     return Card(
       margin: const EdgeInsets.only(bottom: 16.0),
       shape: RoundedRectangleBorder(
@@ -78,7 +72,7 @@ class SavedMealScreen extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
             child: Image.network(
-              meal['image']!,
+              meal.imageUrl,
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -90,7 +84,7 @@ class SavedMealScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  meal['title']!,
+                  meal.title,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -98,7 +92,7 @@ class SavedMealScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  meal['description']!,
+                  meal.excerpt,
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey[700],
@@ -110,6 +104,7 @@ class SavedMealScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       // Navigate to meal detail page
+                      mealProvider.toggleSavedStatus(meal.id);
                     },
                     style: ElevatedButton.styleFrom(
                       padding:
@@ -120,7 +115,7 @@ class SavedMealScreen extends StatelessWidget {
                       backgroundColor: Colors.orangeAccent,
                     ),
                     child: Text(
-                      "View Details",
+                      "Remove",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

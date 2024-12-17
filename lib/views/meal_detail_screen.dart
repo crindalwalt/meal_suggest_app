@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meal_suggest/models/meal.dart';
+import 'package:meal_suggest/providers/meal_provider.dart';
 import 'package:meal_suggest/views/saved_meal_screen.dart';
 import 'package:meal_suggest/views/utils/bottom_navbar.dart';
+import 'package:provider/provider.dart';
 import 'package:timelines/timelines.dart';
 
 class MealDetailScreen extends StatelessWidget {
@@ -11,6 +13,7 @@ class MealDetailScreen extends StatelessWidget {
   MealDetailScreen({super.key, required this.meal});
   @override
   Widget build(BuildContext context) {
+    final mealProvider = Provider.of<MealProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -68,9 +71,8 @@ class MealDetailScreen extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.all(12),
-
-              decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(15)),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(15)),
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,27 +123,17 @@ class MealDetailScreen extends StatelessWidget {
             // _buildStepTimeLine(1, "something"),
             const SizedBox(height: 30),
             Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Handle button press
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => SavedMealScreen(),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  backgroundColor: Colors.orangeAccent,
-                ),
-                child: Text(
-                  "Save Recipe",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
+              child: meal.isSaved
+                  ? IconButton(
+                      onPressed: () {
+                        mealProvider.toggleSavedStatus(meal.id);
+                      },
+                      icon: Icon(Icons.favorite))
+                  : IconButton(
+                      onPressed: () {
+                        mealProvider.toggleSavedStatus(meal.id);
+                      },
+                      icon: Icon(Icons.favorite_border)),
             ),
             const SizedBox(height: 30),
           ],
@@ -217,6 +209,7 @@ class MealDetailScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildStepItem(int stepNumber, String description) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
