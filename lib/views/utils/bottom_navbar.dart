@@ -13,7 +13,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home" ,),
         BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
         BottomNavigationBarItem(icon: Icon(Icons.add), label: "Add"),
         BottomNavigationBarItem(
