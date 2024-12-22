@@ -8,6 +8,7 @@ import 'package:meal_suggest/views/add_meal_screen.dart';
 import 'package:meal_suggest/views/meal_detail_screen.dart';
 import 'package:meal_suggest/views/search_meal_screen.dart';
 import 'package:meal_suggest/views/utils/bottom_navbar.dart';
+import 'package:meal_suggest/views/utils/meal_save_form.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -30,6 +31,17 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text("Meal Suggest"),
+        actions: [
+          Padding(
+            padding: EdgeInsets.all(12),
+            child: IconButton(
+              onPressed: () {
+                _showMealFormSheet(context);
+              },
+              icon: Icon(Icons.people_outline),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -105,9 +117,10 @@ class HomeScreen extends StatelessWidget {
                             width: double.infinity,
                             height: double.infinity,
                             child: Column(
-
                               children: [
-                                const SizedBox(height: 20,),
+                                const SizedBox(
+                                  height: 20,
+                                ),
                                 Container(
                                   width: 40,
                                   height: 40,
@@ -271,6 +284,25 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showMealFormSheet(context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+          ),
+          child: MealSaveForm(),
+        );
+      },
     );
   }
 }
