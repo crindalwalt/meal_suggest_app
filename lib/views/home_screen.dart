@@ -23,15 +23,20 @@ class HomeScreen extends StatelessWidget {
       key: _key,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-
         leading: IconButton(
             onPressed: () {
               _key.currentState?.openDrawer();
             },
-            icon: Icon(Icons.menu)),
+            icon: FaIcon(
+              FontAwesomeIcons.personDigging,
+              color: Colors.orange,
+            )),
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text("Meal Suggest"),
+        title: Text(
+          "Meal Suggest",
+          style: TextStyle(fontFamily: "poppins"),
+        ),
         actions: [
           Padding(
               padding: EdgeInsets.all(12),
