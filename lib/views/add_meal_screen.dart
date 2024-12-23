@@ -119,7 +119,7 @@ class _AddMealScreenState extends State<AddMealScreen> {
                             setState(() {
                               _ingredients.remove(ingredient);
                             });
-                          },
+                          },  
                         ))
                     .toList(),
               ),

@@ -24,13 +24,14 @@ class HomeScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              _key.currentState?.openDrawer();
-            },
-            icon: FaIcon(
-              FontAwesomeIcons.personDigging,
-              color: Colors.orange,
-            )),
+          onPressed: () {
+            _key.currentState?.openDrawer();
+          },
+          icon: FaIcon(
+            FontAwesomeIcons.personDigging,
+            color: Colors.orange,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
@@ -39,17 +40,27 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           Padding(
-              padding: EdgeInsets.all(12),
-              child: IconButton(
+            padding: EdgeInsets.all(12),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SavedMealScreen(),
+                  ),
+                );
+              },
+              icon: Icon(Icons.favorite),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(12),
+            child: IconButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => SavedMealScreen(),
-                    ),
-                  );
+                  // ! Show the Add Meal Bottom Sheet
+                  _showMealAddSheet(context);
                 },
-                icon: Icon(Icons.favorite),
-              )),
+                icon: FaIcon(FontAwesomeIcons.plus)),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -293,6 +304,28 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showMealAddSheet(BuildContext context) {
+    // showAboutDialog(context: context, children: [Text("something")]);
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return Container(
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 190, 222, 248),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          width: double.infinity,
+          height: 600,
+          child: AddMealScreen(),
+        );
+      },
     );
   }
 }
