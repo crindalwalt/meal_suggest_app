@@ -1,0 +1,16 @@
+How to setup Firebase
+
+1) Firebase tools to download krein (node js install hona zrori hy)
+npm install -g firebase-tools
+
+2) Activating the Firebase CLI bundle via flutter
+flutter pub global activate flutterfire_cli
+
+3) configuring the firebase with flutter
+firebase login
+flutterfire configure
+
+4) installing firestore dependency in flutter app
+flutter pub add firebase_core (esssential pkg)
+flutter pub add cloud_firestore (for database)
+flutter pub add firebase_auth (for login/signup functionality)
